@@ -1,0 +1,12 @@
+Union_System/
+├── backend/                # "عقل" النظام (Python FastAPI)
+│   ├── main.py             # الملف الرئيسي والمداخل (Endpoints)
+│   ├── auth.py             # نظام الدخول للمكاتب (Login)
+│   ├── complaints.py       # نظام الشكاوي العامة (بدون دخول)
+│   └── database.py         # الاتصال بـ Supabase
+├── frontend/               # الواجهات (HTML/CSS/JS)
+│   ├── index.html          # الواجهة الرئيسية (رابط الشكاوي + دخول الأعضاء)
+│   ├── dashboard.html      # لوحة تحكم المكاتب والمهام
+│   ├── chat.html           # منصة الدردشة الداخلية
+│   └── public_complaint.html # صفحة الشكاوي للطلاب (عامة)
+└── requirements.txt        # المكتبات المطلوبة
