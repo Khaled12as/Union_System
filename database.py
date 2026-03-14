@@ -1,22 +1,13 @@
-import httpx
-import os
-from dotenv import load_dotenv
+from supabase import create_client, Client
 
-load_dotenv()
+# استبدل هذه القيم ببيانات مشروعك من لوحة تحكم Supabase
+SUPABASE_URL = "https://hrpwivxltpxqxrxyrywl.supabase.co"
+SUPABASE_KEY = "sb_publishable_yWke0XGMVhH0SCuEdqnPpA_6RE2rinr"
 
-URL = os.environ.get("SUPABASE_URL")
-KEY = os.environ.get("SUPABASE_KEY")
-
-# دالة لإرسال البيانات مباشرة لقاعدة البيانات
-def send_to_db(table, data):
-    headers = {
-        "apikey": KEY,
-        "Authorization": f"Bearer {KEY}",
-        "Content-Type": "application/json",
-        "Prefer": "return=representation"
-    }
-    url = f"{URL}/rest/v1/{table}"
-    
-    with httpx.Client() as client:
-        response = client.post(url, json=data, headers=headers)
-        return response.json()
+def get_db_client() -> Client:
+    """إنشاء وإرجاع كائن الاتصال بقاعدة بيانات Supabase"""
+    try:
+        return create_client(SUPABASE_URL, SUPABASE_KEY)
+    except Exception as e:
+        print(f"[خطأ في تهيئة الاتصال بقاعدة البيانات]: {e}")
+        raise
